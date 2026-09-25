@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="OnlineStore.App/OnlineStore.App.csproj" Id="216b71ad-8b2c-4481-b92e-545cc8a8f913" />
+  <Project Path="OnlineStore.Domain/OnlineStore.Domain.csproj" Id="dd99e08d-9377-4ea2-9097-3d61f9517d0b" />
+</Solution>
