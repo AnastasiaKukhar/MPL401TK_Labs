@@ -1,3 +1,4 @@
+using OnlineStore.Domain.Enums;
 namespace OnlineStore.Domain;
 
 public class Order
@@ -6,9 +7,10 @@ public class Order
 
     public Guid Id { get; } = Guid.NewGuid();
     public Customer Customer { get; }                       // composition
-    public OrderStatus Status { get; private set; } = OrderStatus.New;
+    public OrderStatus Status { get; private set; } = OrderStatus.Created;
     public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
     public decimal Total => _items.Sum(i => i.Total);
+    public Address DeliveryAddress { get; set; };
 
     public Order(Customer customer)
     {
@@ -63,7 +65,32 @@ public class Order
 
     private void EnsureModifiable()
     {
-        if (Status != OrderStatus.New)
+        if (Status != OrderStatus.Created)
             throw new InvalidOperationException($"Замовлення в статусі {Status} не можна змінювати.");
     }
+
+    public string GetStatusDescription() => Status switch
+    {
+        OrderStatus.Created => "Створено",
+        OrderStatus.Paid => "Оплачено",
+        OrderStatus.Cancelled => "Скасовано",
+        OrderStatus.Shipped => "Відправлено",
+        OrderStatus.Delivered => "Доставлено",
+        _ => "Невідомий статус"
+    };
+
+    public string GetOrderCategory() => Total switch
+    {
+       <500 => "Малий",
+        < 5000 => "Середній",
+        >= 5000 => "Великий",
+        _ => "Невідомий"
+    };
+
+    public string GetDeliveryMethod() => (Status, Total) switch
+    {
+        
+        (OrderStatus.Paid, >= 2000) => "Безкоштовна доставка",
+        _ => "Невідомий метод доставки"
+    };
 }

@@ -3,8 +3,8 @@ namespace OnlineStore.Domain;
 public class Customer
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public string Name { get; }
-    public string Email { get; }
+    public required string Name { get; }
+    public required string Email { get; }
 
     public Customer(string name, string email)
     {
