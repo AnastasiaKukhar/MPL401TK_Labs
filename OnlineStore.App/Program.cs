@@ -57,3 +57,4 @@ catch (InvalidOperationException ex) { Console.WriteLine($"Помилка: {ex.M
 
 try { var bad = new Product("Брак", 0); }
 catch (ArgumentException ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+

@@ -1,6 +1,6 @@
 namespace OnlineStore.Domain;
 
-public class CardPayment : IPaymentMethod
+public class CardPayment : IPaymentMethod //підключення інтерфейу
 {
     private readonly string _cardNumber;
 

@@ -2,7 +2,7 @@ namespace OnlineStore.Domain;
 
 public class Order
 {
-    private readonly List<OrderItem> _items = new();
+    private readonly List<OrderItem> _items = new(); //encapsulation
 
     public Guid Id { get; } = Guid.NewGuid();
     public Customer Customer { get; }                       // composition
@@ -37,7 +37,7 @@ public class Order
         _items.Remove(item);
     }
 
-    public string Pay(IPaymentMethod paymentMethod)
+    public string Pay(IPaymentMethod paymentMethod) // polymorphism
     {
         ArgumentNullException.ThrowIfNull(paymentMethod);
 
@@ -53,7 +53,7 @@ public class Order
         return receipt;
     }
 
-    public void Cancel()
+    public void Cancel() 
     {
         if (Status == OrderStatus.Paid)
             throw new InvalidOperationException("Оплачене замовлення не можна скасувати.");

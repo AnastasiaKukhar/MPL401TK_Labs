@@ -1,6 +1,6 @@
 namespace OnlineStore.Domain;
 
-public class BankTransferPayment : IPaymentMethod
+public class BankTransferPayment : IPaymentMethod //підключення інтерфейсу IPaymentMethod для реалізації методу оплати банківським переказом
 {
     private readonly string _iban;
 
